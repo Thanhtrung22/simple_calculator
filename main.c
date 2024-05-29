@@ -19,17 +19,22 @@ int main()
     {
         // system("cls");
         menu();
-        printf("\nNhap lua chon cua ban: ");
-        scanf("%hhu", &select);
+        
+        
+            printf("\nNhap lua chon cua ban(1- 3): ");
+            scanf("%hhu", &select);
+            while(getchar() != '\n'); // xử lý input nếu đầu vào không phải 1 số hay là nó là kí tự
+       
+        
         switch (select)
         {
         case 1:
         {
             input(&a, &b);
             printf("Nhap phep toan: ");
-            while ((getchar()) != '\n')
-                ;
             scanf("%c", &operand);
+            while ((getchar()) != '\n');
+
             switch (operand)
             {
             case '+':
@@ -60,7 +65,10 @@ int main()
             printf("\nSee you again");
             return 0;
         }
+        default:
+            printf("\nNhap sai lua chon");
         }
+
     }
     return 0;
 }
@@ -76,11 +84,21 @@ void menu()
 }
 void input(uint32_t *a, uint32_t *b)
 {
-    printf("Nhap so thu nhat: ");
-    scanf("%u", a);
+    int n = 0;
+    do
+    {
+         printf("Nhap so thu nhat: ");
+         n = scanf("%u", a);
+         while(getchar() != '\n');
+        printf("\n n = %d\n", n);
+    }while(n ==  0);
+   
+    
     
     printf("Nhap so thu hai: ");
-    scanf("%u", b);
+    n = scanf("%u", b);
+    printf("\n n = %d\n", n);
+    while(getchar() != '\n');
 }
 
 uint32_t add(uint32_t a, uint32_t b)
@@ -109,7 +127,7 @@ uint32_t GCD(uint32_t a, uint32_t b)
     uint32_t ucln = 0;
     uint32_t min = a < b ? a : b;
 
-    for (uint32_t i = min; i >= 1; i--)
+    for (uint32_t i = min; i >= 1; i--) // nếu để i = 2; i <= min; i++ thì vòng lặp sẽ chạy nhiều hơn cần thiết
     {
         if (a % i == 0 && b % i == 0)
         {
