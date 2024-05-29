@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <math.h>
-#include <ctype.h>
+#include <conio.h>
+#include <stdlib.h>
+
 uint32_t add(uint32_t a, uint32_t b);
 uint32_t minus(uint32_t a, uint32_t b);
-float div(uint32_t a, uint32_t b);
+float divide(uint32_t a, uint32_t b);
 uint64_t mul(uint32_t a, uint32_t b);
 void menu();
 void input(uint32_t *a, uint32_t *b);
@@ -17,15 +18,14 @@ int main()
     uint32_t a, b;
     while (1)
     {
-        // system("cls");
+        system("cls");
         menu();
-        
-        
-            printf("\nNhap lua chon cua ban(1- 3): ");
-            scanf("%hhu", &select);
-            while(getchar() != '\n'); // xử lý input nếu đầu vào không phải 1 số hay là nó là kí tự
-       
-        
+
+        printf("\nNhap lua chon cua ban(1- 3): ");
+        scanf("%hhu", &select);
+        while (getchar() != '\n')
+            ; // xử lý input nếu đầu vào không phải 1 số hay là nó là kí tự
+
         switch (select)
         {
         case 1:
@@ -33,7 +33,8 @@ int main()
             input(&a, &b);
             printf("Nhap phep toan: ");
             scanf("%c", &operand);
-            while ((getchar()) != '\n');
+            while ((getchar()) != '\n')
+                ;
 
             switch (operand)
             {
@@ -47,7 +48,7 @@ int main()
                 printf("%u * %u = %llu", a, b, mul(a, b));
                 break;
             case '/':
-                printf("%u / %u = %.2f", a, b, div(a, b));
+                printf("%u / %u = %.2f", a, b, divide(a, b));
                 break;
             default:
                 printf("\nNhap sai phep toan");
@@ -68,7 +69,7 @@ int main()
         default:
             printf("\nNhap sai lua chon");
         }
-
+        getch();
     }
     return 0;
 }
@@ -84,21 +85,22 @@ void menu()
 }
 void input(uint32_t *a, uint32_t *b)
 {
-    int n = 0;
+    int32_t check_scanf = 0;
     do
     {
-         printf("Nhap so thu nhat: ");
-         n = scanf("%u", a);
-         while(getchar() != '\n');
-        printf("\n n = %d\n", n);
-    }while(n ==  0);
-   
-    
-    
-    printf("Nhap so thu hai: ");
-    n = scanf("%u", b);
-    printf("\n n = %d\n", n);
-    while(getchar() != '\n');
+        printf("Nhap so thu nhat: ");
+        check_scanf = scanf("%u", a);
+        while (getchar() != '\n')
+            ;
+    } while (check_scanf == 0);
+
+    do
+    {
+        printf("Nhap so thu hai: ");
+        check_scanf = scanf("%u", b);
+        while (getchar() != '\n')
+            ;
+    } while (check_scanf == 0);
 }
 
 uint32_t add(uint32_t a, uint32_t b)
@@ -116,7 +118,7 @@ uint64_t mul(uint32_t a, uint32_t b)
     return a * b;
 }
 
-float div(uint32_t a, uint32_t b)
+float divide(uint32_t a, uint32_t b)
 {
 
     return (float)a / (float)b;
