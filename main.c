@@ -1,13 +1,29 @@
 
 #include "input.h"
-#include "cal.h"
+#include "gcd.h"
+#include "basic_cal.h"
 #include "main.h"
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
 
+
+mode_fuction mode[] = 
+{
+    {
+        .mode_name = "Calculate basic"
+    },
+    {
+        .mode_name = "Find GCD"
+    },
+    {
+        .mode_name = "Exit"
+    }
+};
+uint8_t mode_size = sizeof(mode) / sizeof(mode[0]);
 int main()
 {
     uint8_t select = 0;
-    char operand = 0;
-    uint32_t a, b;
     while (1)
     {
         system("cls");
@@ -18,47 +34,26 @@ int main()
         while (getchar() != '\n')
             ; // xử lý input nếu đầu vào không phải 1 số hay là nó là kí tự
 
-        switch (select)
+        switch(select)
         {
-        case 1:
-        {
-            a = get_input_number("Nhap so thu nhat", "Number");
-            operand = get_input_operand("Nhap phep toan", "Toan tu nhan duoc");
-
-            b = get_input_number("Nhap so thu hai", "Number");
-
-            switch (operand)
+            case 1:
             {
-            case '+':
-                printf("\n%u + %u = %u", a, b, add(a, b));
-                break;
-            case '-':
-                printf("\n%u - %u = %d", a, b, minus(a, b));
-                break;
-            case '*':
-                printf("\n%u * %u = %llu", a, b, mul(a, b));
-                break;
-            case '/':
-                printf("\n%u / %u = %.2f", a, b, divide(a, b));
+                CAL_BASIC_Launch();
                 break;
             }
-            break;
+            case 2:
+            {
+                GCD_Launch();
+                break;
+            }
+            case 3:
+            {
+                printf("\nSee you again!");
+                return 0;
+            }
+
         }
-        case 2:
-        {
-            a = get_input_number("Nhap so thu nhat", "Number");
-            b = get_input_number("Nhap so thu hai", "Number");
-            printf("\nUCLN cua %u va %u la %u", a, b, GCD(a, b));
-            break;
-        }
-        case 3:
-        {
-            printf("\nSee you again");
-            return 0;
-        }
-        default:
-            printf("\nNhap sai lua chon");
-        }
+        printf("\nPress enter to continue...");
         getch();
     }
     return 0;
@@ -69,7 +64,9 @@ void menu()
     printf("\n****************************************************************");
     printf("\n\t\t\tSIMPLE CALCULATION PROGRAM");
     printf("\n*****************************************************************");
-    printf("\n\n\t1.Calculate basic");
-    printf("\n\t2.Find GCD");
-    printf("\n\t3. Exit");
+    for(uint8_t i = 0; i < mode_size; i++)
+    {
+        printf("\n\t%u. %s", i + 1, mode[i].mode_name);
+    }
+  
 }

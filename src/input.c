@@ -1,4 +1,5 @@
 #include "input.h"
+#include <stdio.h>
 
 char get_input_operand(char *inform, char *conform)
 {
@@ -29,25 +30,4 @@ uint32_t get_input_number(char *input_inform, char *confirm)
 
     } while (check_scanf == 0);
     return number;
-}
-void input(uint32_t *a, uint32_t *b)
-{
-    int32_t check_scanf = 0;
-    do
-    {
-        printf("Nhap so thu nhat: ");
-        check_scanf = scanf("%u", a);
-        while (getchar() != '\n')
-            ;
-
-    } while (check_scanf == 0);
-
-    do
-    {
-        printf("Nhap so thu hai: ");
-        check_scanf = scanf("%u", b);
-        while (getchar() != '\n')
-            ;
-
-    } while (check_scanf == 0);
 }

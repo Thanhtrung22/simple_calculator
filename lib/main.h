@@ -2,8 +2,12 @@
 #define MAIN_H
 
 
-#include <conio.h>
-#include <stdlib.h>
+
+
+typedef struct
+{
+    char *mode_name;
+}mode_fuction;
 
 void menu();
 
