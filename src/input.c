@@ -1,6 +1,5 @@
 #include "input.h"
 
-
 char get_input_operand(char *inform, char *conform)
 {
     char operand = '\0';
@@ -11,6 +10,7 @@ char get_input_operand(char *inform, char *conform)
         printf("\n%s: %c", conform, operand);
         while (getchar() != '\n')
             ;
+
     } while (operand != '+' && operand != '-' && operand != '*' && operand != '/');
 
     return operand;

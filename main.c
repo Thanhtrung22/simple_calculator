@@ -3,10 +3,6 @@
 #include "cal.h"
 #include "main.h"
 
-
-
-
-
 int main()
 {
     uint8_t select = 0;
@@ -77,4 +73,3 @@ void menu()
     printf("\n\t2.Find GCD");
     printf("\n\t3. Exit");
 }
-
